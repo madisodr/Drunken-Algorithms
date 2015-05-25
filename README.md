@@ -2,12 +2,14 @@
 C++ implementations of various algorithms. 
 
 Implemented
+
     Selection Sort
     Insertion Sort
 
 TODO
 
 Planned
+    
     > Sorting
 
     Merge Sort
