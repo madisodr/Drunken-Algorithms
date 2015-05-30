@@ -13,18 +13,14 @@ Planned
     > Sorting
 
     Merge Sort
-    Bucket Sort
-    BogoSort
     HeapSort
     Shell Sort
     Comb Sort
     Counting Sort
-    Radix Sort
 
     > Selection
 
     Quick Select
-    Selection Generic
     Binary Search
 
     > Path Finding
