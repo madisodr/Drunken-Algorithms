@@ -5,8 +5,8 @@ Implemented
 
     Selection Sort
     Insertion Sort
-
-TODO
+    QuickSort
+    Bubble Sort
 
 Planned
     
@@ -14,15 +14,12 @@ Planned
 
     Merge Sort
     Bucket Sort
-    QuickSort
     BogoSort
     HeapSort
-    Bubble Sort
     Shell Sort
     Comb Sort
     Counting Sort
     Radix Sort
-    Karatsuba Multiplication
 
     > Selection
 
@@ -44,3 +41,6 @@ Planned
     AVL Tree
     2-3 Tree
 
+    > Other
+    
+    Karatsuba Multiplication

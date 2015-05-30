@@ -110,6 +110,67 @@ class QuickSort
         }
 };
 
+/********************************
+ * BUBBLESORT
+ *******************************/
+class BubbleSort
+{
+    public: 
+        BubbleSort(vector<int>& A)
+        {
+            cout << "BubbleSort\n";
+            sort(A);
+        }
+        void sort(vector<int>& A)
+        {
+            int f = 1;
+            for(int i = 1; i < A.size() && f; i++)
+            {
+                f = 0;
+                for(int j = 0; j < A.size() - 1; j++)
+                {
+                    if(A[j+1] < A[j])
+                    {
+                        swap(A[j], A[j+1]);
+                        f = 1;
+                    }
+                }
+            }
+        }
+    
+};
+
+/********************************
+ * MERGESORT
+ *******************************/
+class MergeSort
+{
+    public:
+        MergeSort(vector<int>& A, bool Y)
+        {
+            cout << "MergeSort: ";
+            if(Y)
+            {
+                cout << "Top Down\n";
+                sortTopDown(A);
+            }
+            else
+            {
+                cout << "Bottom Up\n";
+                sortBottomUp(A);
+            }
+        }
+
+        void sortTopDown(vector<int>& A)
+        {
+
+        }
+
+        void sortBottomUp(vector<int> A)
+        {
+
+        }
+};
 void printVector(vector<int>& A)
 {
     for(int i = 0; i < A.size(); i++)
@@ -136,7 +197,7 @@ int main()
     printVector(A);
     shuffle(A);
 
-    QuickSort ss(A);
+    BubbleSort ss(A);
     printVector(A);
 
 }
