@@ -1,42 +1,79 @@
-# Drunken-Algorithms
-C++ implementations of various algorithms. 
+# Drunken Algorithms
+## Introductions
+Drunken Algorithms is a suite of algorithms implemented in C++. 
 
-Implemented
+Many of these algorithms I was required to write or use throughout
+my college career. Rewriting these over and over for classes, not
+realizing I might need them again, seemed stupid. So, I decided to
+just write, once and for all, a few source files with a bunch of
+algorithms. Sorting, Selection, Path Finding and Graph Search, 
+Data Structures such as Trees, among other things. Many of these
+have counter parts already created in the standard library, not to
+mention all the methods of sorting that are included, which all do
+the same thing: sort a list. But knowing how things work instead 
+of just expecting them to work is what being a programmer and 
+engineer is all about.
 
-    Selection Sort
-    Insertion Sort
-    QuickSort
-    Bubble Sort
+This software is all open source. If any of this code is ever paid 
+for then you either ripped someone off and/or got ripped off. I 
+hold no responsibility in either case and you can see [LICENSE](LISCENSE)
+for more information.
 
-Planned
+## Use
+Just download and include the .cpp file you want to use in your source.
+
+## School Use
+If you are using this code for homework, feel free to not include my name
+when you go to submit it. So long as it remains free. If you get caught
+cheating, its not my problem and I don't want to hear about it. If your
+submission wins a prize, I reserve the right to step forward and call you
+a cheater and take the prize for myself. If you are a teacher and you
+caught one of your students cheating using this code, I warned them.
+
+## Implemented
+
++ Selection Sort
++ Insertion Sort
++ QuickSort
++ Bubble Sort
+
+## Planned
     
-    > Sorting
+### Sorting
 
-    Merge Sort
-    HeapSort
-    Shell Sort
-    Comb Sort
-    Counting Sort
++ Merge Sort
++ HeapSort
++ Shell Sort
++ Comb Sort
++ Counting Sort
 
-    > Selection
+### Selection
 
-    Quick Select
-    Binary Search
++ Quick Select
++ Binary Search
 
-    > Path Finding
+### Path Finding
 
-    A*
-    Dijkstra's
-    Kruskal's
-    BFS (Breath First Search)
-    DFS (Depth First Search)
++ A(star)
++ Dijkstra's
++ Kruskal's
++ BFS (Breath First Search)
++ DFS (Depth First Search)
     
-    > Data Storage
+### Data Storage
 
-    Binary Search Tree
-    AVL Tree
-    2-3 Tree
++ Binary Search Tree
++ AVL Tree
++ 2-3 Tree
 
-    > Other
+### Other
     
-    Karatsuba Multiplication
++ Karatsuba Multiplication
+
+## Copyright
+Liscense: GPL 3.0
+
+Read file [LICENSE](LICENSE)
+
+## Authors && Contributors
+Daniel R. Madison - madisodr@email.sc.edu
