@@ -1,3 +1,5 @@
+#include <algorithm>
+#include <iostream>
 #include <vector>
 
 using namespace std;
@@ -5,60 +7,51 @@ using namespace std;
 /********************************
  * SELECTION SORT
  *******************************/
-class Selection
+class SelectionSort
 {
-    protected:
-        mutable vector<int> unsorted;
-
     public:
-    Selection(vector<int> A)
-    {
-        this->unsorted = A;
-    }
-        
-    vector<int> Sort()
-    {
-        vector<int> A = this->unsorted;
-
-        int i,j;
-        int f, temp;
-
-        for(i = A.size(); i > 0; i--)
+        SelectionSort(vector<int>& A)
         {
-            f = 0;
-            for(j = 1; j <= i; j++)
-            {
-                if(A[i] < A[f])
-                    f = j;
-            }
-
-            temp = A[f];
-            A[f] = A[i];
-            A[i] = temp;
+            cout << "Selection Sort\n";
+            sort(A);
         }
 
-        return A;
-    }
+        void sort(vector<int>& A)
+        {
+            int iMin;
+
+            for(int i = 0; i < A.size(); i++)
+            {
+                iMin = i;
+
+                for(int j = i+1; j < A.size(); j++)
+                {
+                    if(A[j] < A[iMin])
+                        iMin = j;
+                }
+
+                if(iMin != i)
+                    swap(A[i], A[iMin]);
+
+            }
+        }
 };
 
 
 /********************************
  * INSERTION SORT
  *******************************/
-class Insertion
+class InsertionSort
 {
-    protected:
-        mutable vector<int> unsorted;
-
     public:
-        Insertion(vector<int> A)
+        InsertionSort(vector<int>& A)
         {
-            this->unsorted = A;
+            cout << "Insertion Sort\n";
+            sort(A);
         }
 
-        vector<int> Sort()
+        void sort(vector<int>& A)
         {
-            vector<int> A = this->unsorted;
             for(int i = 1; i < A.size() - 1; i++)
             {
                 int x = A[i];
@@ -72,24 +65,78 @@ class Insertion
 
                 A[j] = x;
             }
-
-            return A;
         }
 };
 
+/********************************
+ * QUICKSORT
+ * TODO: Add parameter for pivot
+ * count
+ *******************************/
 class QuickSort
 {
-    protected: 
-        mutable vector<int> unsorted;
     public:
-        QuickSort(vector<int> A)
+        QuickSort(vector<int>& A)
         {
-            this->unsorted = A;
+            cout << "QuickSort\n";
+            sort(A, 0, A.size());
         }
 
-        vector<int> Sort()
+        int partition(vector<int>& A, int left, int right, int p)
         {
-            vector<int> A = this->unsorted;
-            return A;
+            for(int i = left; i < right; i++)
+            {
+                if(A[i] <= p)
+                {
+                    swap(A[i], A[left]);
+                    left++;
+                }
+            }
+
+            return (left - 1);
+        }
+
+        void sort(vector<int>& A, int left, int right)
+        {
+            if(left >= right)
+                return;
+
+            int mid = left + (right - left) / 2;
+            swap(A[mid], A[left]);
+            int midpoint = partition(A, left + 1, right, A[left]);
+            swap(A[left], A[midpoint]);
+            sort(A, left, midpoint);
+            sort(A, midpoint + 1, right);
         }
 };
+
+void printVector(vector<int>& A)
+{
+    for(int i = 0; i < A.size(); i++)
+    cout << A[i] << " ";
+
+    cout << "\n\n";
+}
+
+void shuffle(vector<int>& A)
+{
+    random_shuffle (A.begin(), A.end());
+    
+    cout << "Suffleing Vector\n";
+    printVector(A);
+}
+
+int main()
+{
+    vector<int> A;
+    for(int i = 0; i < 10; i++)
+        A.push_back(i);
+
+    cout << "Initial\n";
+    printVector(A);
+    shuffle(A);
+
+    QuickSort ss(A);
+    printVector(A);
+
+}
