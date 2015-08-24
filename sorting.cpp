@@ -20,6 +20,8 @@
 #include <iostream>
 #include <vector>
 
+#include "drunk.h"
+
 using namespace std;
 
 /********************************
@@ -28,6 +30,7 @@ using namespace std;
 class SelectionSort
 {
     public:
+        // Constructor Function to call the actual sorting method.
         SelectionSort(vector<int>& A)
         {
             cout << "Selection Sort\n";
@@ -44,6 +47,7 @@ class SelectionSort
 
                 for(int j = i+1; j < A.size(); j++)
                 {
+                    
                     if(A[j] < A[iMin])
                         iMin = j;
                 }
@@ -164,58 +168,65 @@ class BubbleSort
 class MergeSort
 {
     public:
-        MergeSort(vector<int>& A, bool Y)
+        MergeSort(vector<int>& A, bool topdown)
         {
-            cout << "MergeSort: ";
-            if(Y)
-            {
-                cout << "Top Down\n";
-                sortTopDown(A);
-            }
-            else
-            {
-                cout << "Bottom Up\n";
-                sortBottomUp(A);
-            }
+            vector<int> B(A.size());
+            merge(A, 0, A.size(), B);
         }
 
-        void sortTopDown(vector<int>& A)
+        void merge(vector<int>& A, int left, int right, vector<int>& B)
         {
+            if(right == left + 1)
+                return;
+            
+            int i = 0;
+            int length = right - left;
+            int midpoint_dist = length/2;
+            int l = left;
+            int r = left+midpoint_dist;
 
-        }
+            merge(A, left, left+midpoint_dist, B);
+            merge(A, left+midpoint_dist, right, B);
+            for(i = 0; i < length; i++)
+            {
+                if(l < left + midpoint_dist && (r == right || max(A[l], A[r]) == A[l]))
+                {
+                    B[i] = A[l];
+                    l++;
+                } 
+                else
+                {
+                    B[i] = A[r];
+                    r++;
+                }
+            }
 
-        void sortBottomUp(vector<int> A)
-        {
-
+            for(i = left; i < right; i++)
+                A[i] = B[i - left];
         }
 };
-void printVector(vector<int>& A)
-{
-    for(int i = 0; i < A.size(); i++)
-    cout << A[i] << " ";
-
-    cout << "\n\n";
-}
-
-void shuffle(vector<int>& A)
-{
-    random_shuffle (A.begin(), A.end());
-    
-    cout << "Suffleing Vector\n";
-    printVector(A);
-}
 
 int main()
 {
     vector<int> A;
-    for(int i = 0; i < 10; i++)
+
+    // populate a vector with N values.
+    // SORT_SIZE is defined in drunk.h
+    for(int i = 0; i < SORT_SIZE; i++)
         A.push_back(i);
 
+#ifdef OUTPUT
     cout << "Initial\n";
     printVector(A);
+#endif
+
     shuffle(A);
 
-    BubbleSort ss(A);
+    cout << "Sorting\n";
+    MergeSort(A, false);
+
+#ifdef OUTPUT
     printVector(A);
+#endif
 
 }
