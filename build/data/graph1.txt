@@ -1,0 +1,10 @@
+## node : links
+a: b, c, d
+b: c, d
+c: a, d
+d:
+
+## node : link(cost)
+## e:f(1), g(2)
+## f:e(2), g(1)
+## g:e(1), f(1)
