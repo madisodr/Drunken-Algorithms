@@ -102,7 +102,7 @@ class Graph
 
                 cout << "Connected Nodes => count(" << edges.size() << ")\n";
                 for(ite = edges.begin(); ite != edges.end(); ++ite)
-                    cout << ite->first << "(" << ite->second << ")\n";
+                    cout << "Node " << ite->first << " with cost " << ite->second << "\n";
 
                 cout << "\n";
             }
@@ -129,6 +129,9 @@ int main(int argc, char*argv[])
     {
         while(getline(inFile, line))
         {
+            string s_cost;
+            int cost = 0;
+            string name;
 
             // ignore lines that are comments or blank
             if((line.compare(0,2,"##") == 0) || (line.length() == 0))
@@ -152,13 +155,21 @@ int main(int argc, char*argv[])
             while((pos = nodeEdges.find(NODE_LINK_DELIM)) != string::npos)
             {
                 token = nodeEdges.substr(0, pos);
-                node->link(trim(token));
+
+                name = token.substr(0, token.find("("));
+                s_cost = token.substr(token.find("(") + 1, token.find(")") - token.find("(") - 1);
+                cost = atoi( trim(s_cost).c_str());
+
+                node->link(trim(name), cost);
                 nodeEdges.erase(0, pos + 1);
             }
 
             // the while loop stops at the last element but we still need to
             // add it to the node. 
-            node->link(trim(nodeEdges));
+            name = nodeEdges.substr(0, nodeEdges.find("("));
+            s_cost = nodeEdges.substr(nodeEdges.find("(") + 1, nodeEdges.find(")") - nodeEdges.find("(") - 1);
+            cost = atoi(trim(s_cost).c_str());
+            node->link(trim(name), cost);
 
             // add our new node to the graph
             graph->addNode(node);
