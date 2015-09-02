@@ -16,6 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -33,6 +34,25 @@ class QuickSelect
         int search(vector<int>& A, int imin, int imax, int key)
         {
 
+        }
+
+        int partition(vector<int>& A, int l, int r, int pivot)
+        { 
+            int pivotValue = A[pivot];
+            swap(A[pivot], A[r]);
+            int storeIndex = l;
+
+            for(int i = l; i < r-1, i++)
+            { 
+                if(A[i] < pivotValue)
+                { 
+                    swap(A[storeIndex], A[i]);
+                    storeIndex++;
+                }
+            }
+            
+            swap(A[r], A[storeIndex]);
+            return storeIndex;
         }
 };
 

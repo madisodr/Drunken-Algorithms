@@ -90,6 +90,23 @@ class Graph
             return NULL;
         }
 
+
+        // depth first search for a path to a goal.
+        bool hasPath(Node* start, Node* goal, vector<Node*> checked)
+        { 
+            map<string, int>::iterator it;
+            Node* curr;
+            for(it = start->getEdges().begin(); it != start->getEdges().end(); ++it)
+            {
+                curr = getNodeByLabel(it->first);
+                cout << "Traversing : " << it->first << "\n";
+                if(curr->getLabel() == goal->getLabel())
+                    return true;
+               // else
+                 //   return hasPath(curr, goal);
+            }
+        }
+
         void output()
         {
             vector<Node*>::iterator itn;
@@ -110,6 +127,28 @@ class Graph
 
     private:
         vector<Node*> nodes;
+};
+
+class Dijkstras
+{ 
+
+};
+
+class AStar
+{
+    public:
+        AStar(Graph* g, Node* start, Node* goal)
+        { 
+        }
+
+};
+
+class BFS
+{ 
+};
+
+class DFS
+{ 
 };
 
 int main(int argc, char*argv[])
@@ -181,6 +220,11 @@ int main(int argc, char*argv[])
         cout << "Unable to open file.\n";
 
     graph->output();
+
+    if(graph->hasPath(graph->getNodeByLabel("a"), graph->getNodeByLabel("g")))
+        cout << "Has path.\n";
+    else
+        cout << "No path found.\n";
 
     return 0;
 }
