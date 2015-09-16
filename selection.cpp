@@ -22,40 +22,6 @@
 
 using namespace std;
 
-class QuickSelect
-{
-    public:
-        QuickSelect(vector<int>& A, int key)
-        {
-            cout << "QuickSelect\n";
-            search(A, 0, A.size(), key);
-        }
-
-        int search(vector<int>& A, int imin, int imax, int key)
-        {
-
-        }
-
-        int partition(vector<int>& A, int l, int r, int pivot)
-        { 
-            int pivotValue = A[pivot];
-            swap(A[pivot], A[r]);
-            int storeIndex = l;
-
-            for(int i = l; i < r-1, i++)
-            { 
-                if(A[i] < pivotValue)
-                { 
-                    swap(A[storeIndex], A[i]);
-                    storeIndex++;
-                }
-            }
-            
-            swap(A[r], A[storeIndex]);
-            return storeIndex;
-        }
-};
-
 class BinarySearch
 {
     public:

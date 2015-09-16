@@ -50,11 +50,6 @@ caught one of your students cheating using this code, I warned them.
 + Comb Sort
 + Counting Sort
 
-### Selection
-
-+ Quick Select
-+ Binary Search
-
 ### Path Finding
 
 + A(star)

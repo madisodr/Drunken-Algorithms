@@ -24,6 +24,8 @@
 
 using namespace std;
 
+#ifndef SELECTION_SORT
+#define SELECTION_SORT
 /********************************
  * SELECTION SORT
  *******************************/
@@ -58,7 +60,10 @@ class SelectionSort
             }
         }
 };
+#endif
 
+#ifndef INSERTION_SORT
+#define INSERTION_SORT
 
 /********************************
  * INSERTION SORT
@@ -90,6 +95,11 @@ class InsertionSort
         }
 };
 
+#endif
+
+
+#ifndef QUICK_SORT
+#define QUICK_SORT
 /********************************
  * QUICKSORT
  * TODO: Add parameter for pivot
@@ -131,7 +141,10 @@ class QuickSort
             sort(A, midpoint + 1, right);
         }
 };
+#endif
 
+#ifndef BUBBLE_SORT
+#define BUBBLE_SORT
 /********************************
  * BUBBLESORT
  *******************************/
@@ -161,7 +174,11 @@ class BubbleSort
         }
     
 };
+#endif
 
+
+#ifndef MERGE_SORT
+#define MERGE_SORT
 /********************************
  * MERGESORT
  *******************************/
@@ -205,6 +222,56 @@ class MergeSort
                 A[i] = B[i - left];
         }
 };
+#endif
+
+
+#ifndef HEAP_SORT
+#define HEAP_SORT
+/********************************
+ * HEAPSORT
+ *******************************/
+class HeapSort
+{ 
+    public:
+        HeapSort(vector<int>& A)
+        { 
+            to_heap(A);
+            int end = A.size() - 1;
+            for(int e = A.size() -1; e > 0; --e)
+            { 
+                swap(A[0], A[e]);
+                sink(A, 0, e);
+            }
+        }
+
+        void to_heap(vector<int>& a)
+        { 
+            for(int i = (a.size() / 2 - 1); i >= 0; --i)
+                sink(a, i, a.size());
+        }
+
+        void sink(vector<int>& a, int i, int max)
+        { 
+            int b, c1, c2;
+            while(i < max)
+            { 
+                b = i;
+                c1 = (2*i) + 1;
+                c2 + c2 + 1;
+                if( c1 < max && a[c1]  > a[b])
+                    b = c1;
+                
+                if( c2 < max && a[c2] > a[b])
+                    b = c2;
+                if(b == i)
+                    return;
+
+                swap(a[i], a[b]);
+                i = b;
+            }
+        }
+};
+#endif
 
 int main()
 {
@@ -223,7 +290,9 @@ int main()
     shuffle(A);
 
     cout << "Sorting\n";
-    MergeSort(A, false);
+    //MergeSort M(A, false);
+    // BubbleSort B(A);
+    HeapSort H(A);
 
 #ifdef OUTPUT
     printVector(A);
