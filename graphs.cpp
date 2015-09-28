@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -51,10 +50,8 @@ class Node
 
             return false;
         }
-
         map<string, int> getEdges() { return this->edges; }
         string getLabel() { return this->label; }
-
     private:
         string label;
         map<string, int> edges;
@@ -155,10 +152,9 @@ int main(int argc, char*argv[])
 {
  
     size_t pos;
-    string token, line;
+    string token, line, s_cost, name;
+    int cost;
 
-    // File to retrieve data from.
-    // TODO: make interactive way to imput data. 
     ifstream inFile ("data/graph1.txt");
 
     // create a new graph
@@ -168,9 +164,7 @@ int main(int argc, char*argv[])
     {
         while(getline(inFile, line))
         {
-            string s_cost;
-            int cost = 0;
-            string name;
+            cost = 0;
 
             // ignore lines that are comments or blank
             if((line.compare(0,2,"##") == 0) || (line.length() == 0))
@@ -217,7 +211,7 @@ int main(int argc, char*argv[])
         inFile.close();
     }
     else 
-        cout << "Unable to open file.\n";
+        cout << "ERROR: Unable to open data file.\n";
 
     graph->output();
 
