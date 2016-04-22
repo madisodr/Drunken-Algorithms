@@ -6,17 +6,14 @@
 
 using namespace std;
 
-class Integer
-{ 
+class Integer { 
     public:
         Integer(){this->push(0); }
         Integer(vector<int> _digits) { this->digits = _digits; }
-        Integer(int v)
-        { 
+        Integer(int v) { 
             if(v == 0)
                 digits.push_back(0);
-            while(v > 0)
-            { 
+            while(v > 0) { 
                 digits.push_back(v % 10);
                 v /= 10;
             }
@@ -30,21 +27,16 @@ class Integer
         int size() { return this->digits.size(); }
         void push(int x) { this->digits.push_back(x); }
 
-        void trimZeros()
-        { 
-            for(int i = this->digits.size() - 1; i >= 0 && digits[i] == 0; i--)
-            { 
+        void trimZeros() { 
+            for(int i = this->digits.size() - 1; i >= 0 && digits[i] == 0; i--) { 
                 this->digits.pop_back();
             }
 
             if(digits.empty())
-            { 
                 this->push(0);
-            }
         }
 
-        void makeEqualSize(Integer* b)
-        {
+        void makeEqualSize(Integer* b) {
             int sT = this->getDigits().size();
             int sB = b->getDigits().size();
             int m = drunk_max(sT, sB);
@@ -58,19 +50,16 @@ class Integer
                 b->push(0);
         }
 
-        Integer* slice(int low, int high)
-        { 
+        Integer* slice(int low, int high) { 
             Integer* answer;
-            for(int i = low; i <= high; i++)
-            { 
+            for(int i = low; i <= high; i++) { 
                 answer->push(this->digits[i]);
             }
 
             return answer;
         }
 
-        Integer add(Integer* b)
-        { 
+        Integer add(Integer* b) { 
             Integer answer;
             makeEqualSize(b);
             cout << "max donea\n";
@@ -79,11 +68,9 @@ class Integer
 
             int carry = 0;
 
-            for(int i = 0; i < this->size(); i++)
-            { 
+            for(int i = 0; i < this->size(); i++) { 
                 int sum = this->getDigit(i) + b->getDigit(i) + carry;
-                if(sum > 0) 
-                { 
+                if(sum > 0)  { 
                     carry = 1;
                     answer->setDigit(sum - 10, i);
                 } else { 
@@ -98,33 +85,19 @@ class Integer
             return answer;
         }
 
-        Integer* subtract(Integer* b)
-        {
-            Integer* answe
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                r;
+        Integer* subtract(Integer* b) {
+            Integer* answer;
             makeEqualSize(b);
             makeEqualSize(answer);
 
             bool borrow = 0;
-            for(int i = 0; i < this->size(); i++)
-            { 
+            for(int i = 0; i < this->size(); i++) { 
                 int top = this->getDigit(i);
                 int bottom = b->getDigit(i);
                 if(borrow)
                     top--;
 
-                if(top >= bottom)
-                { 
+                if(top >= bottom) { 
                     borrow = false;
                     answer->setDigit(top-bottom, i);
                 } else { 
@@ -133,15 +106,13 @@ class Integer
                 }
             }
 
-            if(borrow == true)
-            { 
+            if(borrow == true) { 
                 cerr << "ERROR: Can't subtract a larger number from a smaller one.\n";
                 exit(1);
             }
         }
 
-        Integer* karatsuba(Integer* b)
-        { 
+        Integer* karatsuba(Integer* b) { 
             /*  int n = A->size();
                 int m = int(n/2);
 
@@ -163,8 +134,7 @@ class Integer
             return b;
         }
 
-        void to_string()
-        { 
+        void to_string() { 
             for(int i = 0; i < this->size(); i++)
                 cout << this->digits[i];
 
@@ -176,8 +146,7 @@ class Integer
         vector<int> digits;
 };
 
-int main()
-{
+int main() {
     Integer a(5678);
     Integer b(1234);
 

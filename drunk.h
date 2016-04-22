@@ -14,6 +14,10 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *
+ *
+ * Contains various functions used through the project.
  */
 
 #include <vector>
@@ -35,8 +39,7 @@ using namespace std;
  * a standard library type.
  * *****************/
 
-void printVector(std::vector<int>& A)
-{
+void printVector(std::vector<int>& A) {
     for(int i = 0; i < A.size(); i++)
         cout << A[i] << " ";
 
@@ -47,8 +50,7 @@ void printVector(std::vector<int>& A)
  * suffle a vector of integers.
  * *****************/
 
-void shuffle(vector<int>& A)
-{
+void shuffle(vector<int>& A) {
     random_shuffle (A.begin(), A.end());
 
 #ifdef OUTPUT
@@ -61,8 +63,7 @@ void shuffle(vector<int>& A)
  * drunk_max takes two integers and returns the larger of the two. 
  * If they are equal, it returns the value passed second.
  * *****************/
-int drunk_max(int x, int y)
-{
+int drunk_max(int x, int y) {
     if(x > y)
         return x;
     else
@@ -70,21 +71,18 @@ int drunk_max(int x, int y)
 }
 
 // trim from start
-static inline string &ltrim(string &s) 
-{
+static inline string &ltrim(string &s) {
     s.erase(s.begin(), find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace))));
     return s;
 }
 
 // trim from end
-static inline string &rtrim(string &s) 
-{
+static inline string &rtrim(string &s) {
     s.erase(find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(), s.end());
     return s;
 }
 
 // trim from both ends
-static inline string &trim(string &s) 
-{
+static inline string &trim(string &s) {
     return ltrim(rtrim(s));
 }

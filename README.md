@@ -1,4 +1,7 @@
 # Drunken Algorithms
+### Disclaimer
+I did not write these while drinking.
+
 ## Introductions
 Drunken Algorithms is a suite of algorithms implemented in C++. 
 
@@ -44,7 +47,6 @@ caught one of your students cheating using this code, I warned them.
     
 ### Sorting
 
-+ Merge Sort
 + HeapSort
 + Shell Sort
 + Comb Sort

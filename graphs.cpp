@@ -27,8 +27,7 @@
 
 using namespace std;
 
-class Node
-{
+class Node {
     public:
         Node(string s){ this->label = s; }
         ~Node(){}
@@ -39,11 +38,9 @@ class Node
         void delink(string n) { edges.erase(n); }
         void delink(Node* n) { edges.erase(n->getLabel()); }
 
-        bool isLinked(Node* n)
-        {
+        bool isLinked(Node* n) {
             map<string, int>::iterator it;
-            for(it = edges.begin(); it != edges.end(); ++it)
-            {
+            for(it = edges.begin(); it != edges.end(); ++it) {
                 if(it->first == n->getLabel())
                     return true;
             }
@@ -58,28 +55,23 @@ class Node
 
 };
 
-class Graph
-{
+class Graph {
 
     public:
         Graph(){}
         ~Graph(){}
 
-        void addNode(Node* n)
-        {
+        void addNode(Node* n) {
             this->nodes.push_back(n);
         }
 
-        void delNode(Node* n)
-        {
+        void delNode(Node* n) {
             this->nodes.erase(remove(this->nodes.begin(), this->nodes.end(), n), this->nodes.end());
         }
 
-        Node* getNodeByLabel(string n)
-        {
+        Node* getNodeByLabel(string n) {
             vector<Node*>::iterator it;
-            for(it = nodes.begin(); it != nodes.end(); ++it)
-            {
+            for(it = nodes.begin(); it != nodes.end(); ++it) {
                 if((*it)->getLabel() == n)
                     return *it;
             }
@@ -89,12 +81,10 @@ class Graph
 
 
         // depth first search for a path to a goal.
-        bool hasPath(Node* start, Node* goal, vector<Node*> checked)
-        { 
+        bool hasPath(Node* start, Node* goal, vector<Node*> checked) { 
             map<string, int>::iterator it;
             Node* curr;
-            for(it = start->getEdges().begin(); it != start->getEdges().end(); ++it)
-            {
+            for(it = start->getEdges().begin(); it != start->getEdges().end(); ++it) {
                 curr = getNodeByLabel(it->first);
                 cout << "Traversing : " << it->first << "\n";
                 if(curr->getLabel() == goal->getLabel())
@@ -104,8 +94,7 @@ class Graph
             }
         }
 
-        void output()
-        {
+        void output() {
             vector<Node*>::iterator itn;
             map<string, int>::iterator ite;
 
@@ -126,30 +115,24 @@ class Graph
         vector<Node*> nodes;
 };
 
-class Dijkstras
-{ 
+class Dijkstras { 
 
 };
 
-class AStar
-{
+class AStar {
     public:
-        AStar(Graph* g, Node* start, Node* goal)
-        { 
+        AStar(Graph* g, Node* start, Node* goal) { 
         }
 
 };
 
-class BFS
-{ 
+class BFS { 
 };
 
-class DFS
-{ 
+class DFS { 
 };
 
-int main(int argc, char*argv[])
-{
+int main(int argc, char*argv[]) {
  
     size_t pos;
     string token, line, s_cost, name;
@@ -160,10 +143,8 @@ int main(int argc, char*argv[])
     // create a new graph
     Graph* graph = new Graph();
 
-    if(inFile.is_open()) // did we open the file?
-    {
-        while(getline(inFile, line))
-        {
+    if(inFile.is_open()) { // did we open the file?
+        while(getline(inFile, line)) {
             cost = 0;
 
             // ignore lines that are comments or blank
@@ -178,15 +159,13 @@ int main(int argc, char*argv[])
             string nodeEdges = line.substr(line.find(NODE_DELIM)+1, line.length()-1);
 
             // if its an unconnected node then we dont need to do anything more.
-            if(nodeEdges.length() == 0)
-            {
+            if(nodeEdges.length() == 0) {
                 graph->addNode(node);
                 continue;
             }
 
             // split the rest of the line and extract al the edges
-            while((pos = nodeEdges.find(NODE_LINK_DELIM)) != string::npos)
-            {
+            while((pos = nodeEdges.find(NODE_LINK_DELIM)) != string::npos) {
                 token = nodeEdges.substr(0, pos);
 
                 name = token.substr(0, token.find("("));

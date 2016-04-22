@@ -29,26 +29,21 @@ using namespace std;
 /********************************
  * SELECTION SORT
  *******************************/
-class SelectionSort
-{
+class SelectionSort {
     public:
         // Constructor Function to call the actual sorting method.
-        SelectionSort(vector<int>& A)
-        {
+        SelectionSort(vector<int>& A) {
             cout << "Selection Sort\n";
             sort(A);
         }
 
-        void sort(vector<int>& A)
-        {
+        void sort(vector<int>& A) {
             int iMin;
 
-            for(int i = 0; i < A.size(); i++)
-            {
+            for(int i = 0; i < A.size(); i++) {
                 iMin = i;
 
-                for(int j = i+1; j < A.size(); j++)
-                {
+                for(int j = i+1; j < A.size(); j++) {
                     
                     if(A[j] < A[iMin])
                         iMin = j;
@@ -56,7 +51,6 @@ class SelectionSort
 
                 if(iMin != i)
                     swap(A[i], A[iMin]);
-
             }
         }
 };
@@ -68,24 +62,19 @@ class SelectionSort
 /********************************
  * INSERTION SORT
  *******************************/
-class InsertionSort
-{
+class InsertionSort {
     public:
-        InsertionSort(vector<int>& A)
-        {
+        InsertionSort(vector<int>& A) {
             cout << "Insertion Sort\n";
             sort(A);
         }
 
-        void sort(vector<int>& A)
-        {
-            for(int i = 1; i < A.size() - 1; i++)
-            {
+        void sort(vector<int>& A) {
+            for(int i = 1; i < A.size() - 1; i++) {
                 int x = A[i];
                 int j = i;
 
-                while(j > 0 && A[j - 1] > x)
-                {
+                while(j > 0 && A[j - 1] > x) {
                     A[j] = A[j-1];
                     j = j - 1;
                 }
@@ -105,21 +94,16 @@ class InsertionSort
  * TODO: Add parameter for pivot
  * count
  *******************************/
-class QuickSort
-{
+class QuickSort {
     public:
-        QuickSort(vector<int>& A)
-        {
+        QuickSort(vector<int>& A) {
             cout << "QuickSort\n";
             sort(A, 0, A.size());
         }
 
-        int partition(vector<int>& A, int left, int right, int p)
-        {
-            for(int i = left; i < right; i++)
-            {
-                if(A[i] <= p)
-                {
+        int partition(vector<int>& A, int left, int right, int p) {
+            for(int i = left; i < right; i++) {
+                if(A[i] <= p) {
                     swap(A[i], A[left]);
                     left++;
                 }
@@ -128,8 +112,7 @@ class QuickSort
             return (left - 1);
         }
 
-        void sort(vector<int>& A, int left, int right)
-        {
+        void sort(vector<int>& A, int left, int right) {
             if(left >= right)
                 return;
 
@@ -148,24 +131,18 @@ class QuickSort
 /********************************
  * BUBBLESORT
  *******************************/
-class BubbleSort
-{
+class BubbleSort {
     public: 
-        BubbleSort(vector<int>& A)
-        {
+        BubbleSort(vector<int>& A) {
             cout << "BubbleSort\n";
             sort(A);
         }
-        void sort(vector<int>& A)
-        {
+        void sort(vector<int>& A) {
             int f = 1;
-            for(int i = 1; i < A.size() && f; i++)
-            {
+            for(int i = 1; i < A.size() && f; i++) {
                 f = 0;
-                for(int j = 0; j < A.size() - 1; j++)
-                {
-                    if(A[j+1] < A[j])
-                    {
+                for(int j = 0; j < A.size() - 1; j++) {
+                    if(A[j+1] < A[j]) {
                         swap(A[j], A[j+1]);
                         f = 1;
                     }
@@ -182,17 +159,14 @@ class BubbleSort
 /********************************
  * MERGESORT
  *******************************/
-class MergeSort
-{
+class MergeSort {
     public:
-        MergeSort(vector<int>& A, bool topdown)
-        {
+        MergeSort(vector<int>& A, bool topdown) {
             vector<int> B(A.size());
             merge(A, 0, A.size(), B);
         }
 
-        void merge(vector<int>& A, int left, int right, vector<int>& B)
-        {
+        void merge(vector<int>& A, int left, int right, vector<int>& B) {
             if(right == left + 1)
                 return;
             
@@ -204,15 +178,11 @@ class MergeSort
 
             merge(A, left, left+midpoint_dist, B);
             merge(A, left+midpoint_dist, right, B);
-            for(i = 0; i < length; i++)
-            {
-                if(l < left + midpoint_dist && (r == right || max(A[l], A[r]) == A[l]))
-                {
+            for(i = 0; i < length; i++) {
+                if(l < left + midpoint_dist && (r == right || max(A[l], A[r]) == A[l])) {
                     B[i] = A[l];
                     l++;
-                } 
-                else
-                {
+                } else {
                     B[i] = A[r];
                     r++;
                 }
@@ -230,31 +200,25 @@ class MergeSort
 /********************************
  * HEAPSORT
  *******************************/
-class HeapSort
-{ 
+class HeapSort { 
     public:
-        HeapSort(vector<int>& A)
-        { 
+        HeapSort(vector<int>& A) { 
             to_heap(A);
             int end = A.size() - 1;
-            for(int e = A.size() -1; e > 0; --e)
-            { 
+            for(int e = A.size() -1; e > 0; --e) { 
                 swap(A[0], A[e]);
                 sink(A, 0, e);
             }
         }
 
-        void to_heap(vector<int>& a)
-        { 
+        void to_heap(vector<int>& a) { 
             for(int i = (a.size() / 2 - 1); i >= 0; --i)
                 sink(a, i, a.size());
         }
 
-        void sink(vector<int>& a, int i, int max)
-        { 
+        void sink(vector<int>& a, int i, int max) { 
             int b, c1, c2;
-            while(i < max)
-            { 
+            while(i < max) { 
                 b = i;
                 c1 = (2*i) + 1;
                 c2 + c2 + 1;
@@ -273,8 +237,7 @@ class HeapSort
 };
 #endif
 
-int main()
-{
+int main() {
     vector<int> A;
 
     // populate a vector with N values.

@@ -22,17 +22,14 @@
 
 using namespace std;
 
-class BinarySearch
-{
+class BinarySearch {
     public:
-        BinarySearch(vector<int>& A, int key)
-        {
+        BinarySearch(vector<int>& A, int key) {
             cout << "Binary Search\n";
             search(A, 0, A.size(), key);
         }
 
-        int search(vector<int>& A, int imin, int imax, int key)
-        {
+        int search(vector<int>& A, int imin, int imax, int key) {
             if(A.size() == 0)
                 return 0;
 
@@ -45,4 +42,12 @@ class BinarySearch
             else
                 return mid;
         }
+};
+
+class BreadthFirstSearch {
+    
+};
+
+class DepthFirstSearch {
+
 };
