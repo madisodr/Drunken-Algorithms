@@ -68,8 +68,6 @@ caught one of your students cheating using this code, I warned them.
 
 ### Other
     
-+ Karatsuba Multiplication
-
 ## Copyright
 Liscense: GPL 3.0
 
