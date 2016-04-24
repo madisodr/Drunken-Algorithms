@@ -42,6 +42,8 @@ caught one of your students cheating using this code, I warned them.
 + Merge Sort
 
 + Binary Search
++ BFS
++ DFS
 
 ## Planned
     
@@ -57,16 +59,12 @@ caught one of your students cheating using this code, I warned them.
 + A(star)
 + Dijkstra's
 + Kruskal's
-+ BFS (Breath First Search)
-+ DFS (Depth First Search)
     
 ### Data Storage
 
 + Binary Search Tree
 + AVL Tree
 + 2-3 Tree
-
-### Other
     
 ## Copyright
 Liscense: GPL 3.0
