@@ -126,12 +126,6 @@ class AStar {
 
 };
 
-class BFS { 
-};
-
-class DFS { 
-};
-
 int main(int argc, char*argv[]) {
  
     size_t pos;
