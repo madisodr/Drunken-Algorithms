@@ -52,6 +52,7 @@ caught one of your students cheating using this code, I warned them.
 ### Data Structures
 
 + Binary Search Tree
+
 ## Planned
     
 ### Sorting
