@@ -34,27 +34,33 @@ a cheater and take the prize for myself. If you are a teacher and you
 caught one of your students cheating using this code, I warned them.
 
 ## Implemented
+### Sorting
 
 + Selection Sort
 + Insertion Sort
 + QuickSort
 + Bubble Sort
 + Merge Sort
++ HeapSort
+
+### Search & Path Finding
 
 + Binary Search
 + BFS
 + DFS
 
+### Data Structures
+
++ Binary Search Tree
 ## Planned
     
 ### Sorting
 
-+ HeapSort
 + Shell Sort
 + Comb Sort
 + Counting Sort
 
-### Path Finding
+### Search & Path Finding
 
 + A(star)
 + Dijkstra's
@@ -62,7 +68,8 @@ caught one of your students cheating using this code, I warned them.
     
 ### Data Storage
 
-+ Binary Search Tree
++ Linked list
++ Doubly-Linked List
 + AVL Tree
 + 2-3 Tree
     
