@@ -19,8 +19,8 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
-#include "sorting.h"
-#include "../shared/drunk.h"
+#include "../includes/sorting.h"
+#include "../includes/drunk.h"
 
 using namespace std;
 

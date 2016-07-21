@@ -19,7 +19,7 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
-#include "btree.h"
+#include "../includes/btree.h"
 
 using namespace std;
 BinaryTree::BinaryTree() {}
