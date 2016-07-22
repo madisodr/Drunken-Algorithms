@@ -25,28 +25,29 @@
 #define __list_h__
 class Node {
 	public:
-		Node(const int& data, Node* nxt = NULL, Node* prev = NULL);
-
+		Node(const int& data, Node* nxt = NULL);
 		~Node();
 		Node* nextNode() { return m_next; }
 		void setNext(Node* nxt) { m_next = nxt; }
-		Node* prevNode() { return m_prev; }
-		void setPrev(Node* prv) { m_prev = prv; }
 	private:
 		int m_data;
 		Node* m_next;
-		Node* m_prev;
 };
 
-class List {
+class LinkedList {
 	public:
-		List(Node* firstNode);
-		~List();
-	protected:
-		Node* m_first;
+		LinkedList(Node* n = NULL);
+		~LinkedList();
+		Node* at(unsigned int i);
+		void push(Node* n);
+		Node* pop();
+		 
+	private:
+		Node* m_head;
 };
 
-class Queue : public List {
+
+class Queue {
 	public: 
 		Queue(Node* firstNode);
 		~Queue();
@@ -54,16 +55,20 @@ class Queue : public List {
 		void push(Node* n);
 
 	private:
+		Node* m_first;
 		Node* m_last;
 };
 
-class Stack : public List {
+class Stack {
 	public: 
 		Stack(Node* firstNode);
 		~Stack();
 		Node* pop();
 		void push(Node* n);
+		Node* peek();
+		
 	private:
+		Node* m_first;
 		Node* m_last;
 };
 

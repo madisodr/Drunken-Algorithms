@@ -55,6 +55,14 @@ Node* Queue::pop() {
 	return r;
 }
 
+Node* Queue::peakFront() {
+	return m_first;
+}
+
+Node* Queue::peakBack() {
+	return m_last;
+}
+
 Stack::Stack(Node* firstNode) : List(firstNode) {  
 	m_last = firstNode;
 }
@@ -75,4 +83,31 @@ Node* Stack::pop() {
 	m_last->setNext(NULL);
 
 	return r;
+}
+
+Node* Stack::peek() {
+	return m_last;
+}
+
+void Stack::sort() { 
+	if(!isEmpty()) {
+		Node* x = pop();
+		sort();
+		insert(x);
+	}
+} 
+
+void Stack::insert(Node* x) {
+	if(!isEmpty()) {
+		Node* y = peek();
+		if(x->m_data < y->m_data) {
+			pop();
+			insert(x);
+			push(y);
+		} else { 
+			push(y);
+		}
+	} else {
+		push(x);
+	}
 }
