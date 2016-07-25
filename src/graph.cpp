@@ -17,9 +17,42 @@
 */
 
 #include <iostream>
-#include <list>
+#include <vector>
+#include "../includes/graph.h"
+#include "../includes/drunk.h"
 
 using namespace std;
+
+Node::Node(int idx, int data) {
+	m_idx = idx;
+	m_data = data;
+}
+
+Node::~Node() {}
+
+AdjacencyMatrix::AdjacencyMatrix() {
+	// empty constructor	
+}
+
+AdjacencyMatrix::AdjacencyMatrix(int n) {
+	m_matrix.reserve(n);
+	for(int i = 0; i < n; i++) {
+		vector<Node*> tmp (n);
+		m_matrix[i] = tmp;
+	}
+}
+
+AdjacencyMatrix::~AdjacencyMatrix() {
+	for(uint i = 0; i < m_matrix.size(); i++) {
+		for(uint j = 0; j < m_matrix[i].size(); j++) {
+			delete m_matrix[i][j];
+		}
+	}
+}
+
+AdjacencyMatrix::addNode(Node* n) {
+	
+}
 
 class Graph {
     public:
