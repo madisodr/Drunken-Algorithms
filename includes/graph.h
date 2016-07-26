@@ -16,7 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <vector>
+#include <vectori>
+#include <map>
 
 using namespace std;
 
@@ -28,15 +29,21 @@ class Node {
 
 		Node(int idx, int data);
 		~Node();
-		bool addEdge(Node* n);
+		bool addEdge(Node* n, int cost = 0);
 		bool remEdge(Node* n);
 		bool hasEdge(Node* n);
-		std::vector<Node*> getEdges() { return m_edges; }
-
+		std::vector<Node*> getEdges() { return m_costs; }
+		int getIdx() { return m_idx; }
+		bool visted() { return m_visted; }
+		void setVisted(bool v) { m_visted = v; }
+		bool operator==(Node* b) {
+			return b->getIdx() == getIdx();
+		}
 	private:
 		int m_idx;
 		int m_data;
-		std::vector<Node*> m_edges;
+		bool m_visted;
+		std::map<Node*, int> m_costs;
 }
 
 
