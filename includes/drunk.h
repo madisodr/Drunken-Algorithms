@@ -49,18 +49,18 @@ using namespace std;
  * *****************/
 
 static void printVector(std::vector<int>& A) {
-    for(uint i = 0; i < A.size(); i++)
-        cout << A[i] << " ";
+  for(uint i = 0; i < A.size(); i++)
+    cout << A[i] << " ";
 
-    cout << "\n\n";
+  cout << "\n\n";
 }
 
 //suffle a vector of integers.
 static void shuffle(vector<int>& A) {
-    random_shuffle (A.begin(), A.end());
+  random_shuffle (A.begin(), A.end());
 
 #ifdef OUTPUT
-    cout << "Suffleing Vector\n";
+  cout << "Suffleing Vector\n";
 #endif
 }
 
@@ -70,31 +70,31 @@ static void shuffle(vector<int>& A) {
  * If they are equal, it returns the value passed second.
  * *****************/
 static int drunk_max(int x, int y) {
-    if(x > y)
-        return x;
-    else
-        return y;
+  if(x > y)
+    return x;
+  else
+    return y;
 }
 
 /* Code used from user Evan Teran - http://stackoverflow.com/users/13430/evan-teran
 
-	http://stackoverflow.com/questions/216823/whats-the-best-way-to-trim-stdstring 
+http://stackoverflow.com/questions/216823/whats-the-best-way-to-trim-stdstring 
 */
 // trim from start
 static inline std::string &ltrim(std::string &s) {
-	s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
-	return s;
+  s.erase(s.begin(), std::find_if(s.begin(), s.end(), std::not1(std::ptr_fun<int, int>(std::isspace))));
+  return s;
 }
 
 // trim from end
 static inline std::string &rtrim(std::string &s) {
-	s.erase(std::find_if(s.rbegin(), s.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
-	return s;
+  s.erase(std::find_if(s.rbegin(), s.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
+  return s;
 }
 
 // trim from both ends
 static inline std::string &trim(std::string &s) {
-	return ltrim(rtrim(s));
+  return ltrim(rtrim(s));
 }
 
 #endif // __drunk_h__

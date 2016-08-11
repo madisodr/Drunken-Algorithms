@@ -25,85 +25,85 @@ using namespace std;
 BinaryTree::BinaryTree() {}
 
 BinaryTree::~BinaryTree() {
-	this->destroyTree(this->root);
+  this->destroyTree(this->root);
 }
 
 void BinaryTree::insert(int key) {
-	if (this->root == NULL)
-		insert(key, this->root);
-	else {
-		root = new Node;
-		root->key;
-		root->left = NULL;
-		root->right = NULL;
-	}
+  if (this->root == NULL)
+    insert(key, this->root);
+  else {
+    root = new Node;
+    root->key;
+    root->left = NULL;
+    root->right = NULL;
+  }
 }
 
 void BinaryTree::destroyTree(Node * n) {
-	if (n != NULL) {
-		destroyTree(n->left);
-		destroyTree(n->right);
-		delete n;
-	}
+  if (n != NULL) {
+    destroyTree(n->left);
+    destroyTree(n->right);
+    delete n;
+  }
 }
 
 void BinaryTree::insert(int k, Node * n) {
-	if (k < n->key) {
-		if (n->left != NULL) {
-			insert(k, n->left);
-		} else {
-			n->left = new Node;
-			n->left->key = k;
-			n->left->left = NULL;
-			n->left->right = NULL;
-		}
-	} else {
-		if (n->right != NULL) {
-			insert(k, n->right);
-		} else {
-			n->right = new Node;
-			n->right->key = k;
-			n->right->left = NULL;
-			n->right->right = NULL;
-		}
-	}
+  if (k < n->key) {
+    if (n->left != NULL) {
+      insert(k, n->left);
+    } else {
+      n->left = new Node;
+      n->left->key = k;
+      n->left->left = NULL;
+      n->left->right = NULL;
+    }
+  } else {
+    if (n->right != NULL) {
+      insert(k, n->right);
+    } else {
+      n->right = new Node;
+      n->right->key = k;
+      n->right->left = NULL;
+      n->right->right = NULL;
+    }
+  }
 }
 
 void BinaryTree::insert(int k) {
-	if (this->root != NULL) {
-		insert(k, root);
-	} else {
-		root = new Node;
-		root->key = k;
-		root->left = NULL;
-		root->right = NULL;
-	}
+  if (this->root != NULL) {
+    insert(k, root);
+  } else {
+    root = new Node;
+    root->key = k;
+    root->left = NULL;
+    root->right = NULL;
+  }
 }
 
 BreadthFirstSearch::BreadthFirstSearch(BinaryTree* t, int k) {
-	this->search(t, k);
+  this->search(t, k);
 }
 
 BreadthFirstSearch::~BreadthFirstSearch() {}
 
 Node* BreadthFirstSearch::search(Node* n, int k) {
-	return 0;
+  return 0;
 }
 
 DepthFirstSearch::DepthFirstSearch(BinaryTree* t, int k) {
-	this->search(t->getRoot(), k);
+  this->search(t->getRoot(), k);
 }
 
 DepthFirstSearch::~DepthFirstSearch() {}
 
 Node * DepthFirstSearch::search(Node* n, int k) {
-	if (n == NULL)
-		return NULL;
-	else if (n->key == k)
-		return n;
+  if (n == NULL)
+    return NULL;
+  else if (n->key == k)
+    return n;
 
-	if (k < n->key)
-		return this->search(n->left, k);
-	else
-		return this->search(n->right, k);
+  if (k < n->key)
+    return this->search(n->left, k);
+  else
+    return this->search(n->right, k);
 }

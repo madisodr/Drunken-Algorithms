@@ -24,44 +24,47 @@ using namespace std;
 typedef Matrix std::vector<std::vector<int> >;
 
 class Node {
-	public:
+  public:
 
 
-		Node(int idx, int data);
-		~Node();
-		bool addEdge(Node* n, int cost = 0);
-		bool remEdge(Node* n);
-		bool hasEdge(Node* n);
-		std::vector<Node*> getEdges() { return m_costs; }
-		int getIdx() { return m_idx; }
-		bool visted() { return m_visted; }
-		void setVisted(bool v) { m_visted = v; }
-		bool operator==(Node* b) {
-			return b->getIdx() == getIdx();
-		}
-	private:
-		int m_idx;
-		int m_data;
-		bool m_visted;
-		std::map<Node*, int> m_costs;
+    Node(int idx, int data);
+    ~Node();
+    bool addEdge(Node* n, int cost = 0);
+    bool remEdge(Node* n);
+    bool hasEdge(Node* n);
+    std::vector<Node*> getEdges() { return m_costs; }
+    int getIdx() { return m_idx; }
+    bool visted() { return m_visted; }
+    void setVisted(bool v) { m_visted = v; }
+    bool operator==(Node* b) {
+      return b->getIdx() == getIdx();
+    }
+  private:
+    int m_idx;
+    int m_data;
+    bool m_visted;
+    std::map<Node*, int> m_costs;
 }
 
 
 
 class Graph {
-	public:
-		Graph();
-		Graph(Graph &g);
-		~Graph();
+  public:
+    Graph();
+    Graph(Graph &g);
+    ~Graph();
 
-		bool addNode(Node* n);
-		bool addNode(int data);
+    bool addNode(Node* n);
+    bool addNode(int data);
 
-		bool remNode(Node* n);
-		bool remNode(int data);
+    bool remNode(Node* n);
+    bool remNode(int data);
 
-	private:
-		std::vector<Node*> m_nodes;
-		int m_nodeCount;
+    bool DFS(Node* orig, Node* dest, int& cost);
+    bool BFS(Node* orig, Node* dest, int& cost);
+
+  private:
+    std::vector<Node*> m_nodes;
+    int m_nodeCount;
 
 };
