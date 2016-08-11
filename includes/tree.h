@@ -16,43 +16,40 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __drunk_btree_h__
-#define __drunk_btree_h__
+#ifndef __drunk_tree_h__
+#define __drunk_tree_h__
 
 #include <vector>
 
-using namespace std;
+class Node {
+  public:
+    Node(int id, int parent, std::string name);
+    ~Node();
 
-struct Node {
-  int key;
-  Node* left;
-  Node* right;
+
+    int getId() { return m_id; }
+    int getParent() { return m_parent; }
+    std::string getName() { return m_name; }
+
+    bool addChild(Node* n);
+    bool remChild(Node* n);
+  private:
+    int m_id;
+    int m_parent;
+    std::string m_name;
+    std::vector<Node*> m_children;
 };
 
-// GRAPH RELATED SEARCHING
-class BinaryTree {
+class Graph {
 
   public:
-    BinaryTree();
-    ~BinaryTree();
+    Graph();
+    ~Graph();
     Node* getRoot() { return root; }
-    void insert(int k);
+    bool addNode(Node* n);
+    bool remNode(Node* n);
   private:
-    void destroyTree(Node* n);
-    void insert(int k, Node* n);
-
     Node* root;
 };
 
-class BreadthFirstSearch {
-  BreadthFirstSearch(BinaryTree* t, int k);
-  ~BreadthFirstSearch();
-  Node* search(Node* n, int k);
-};
-
-class DepthFirstSearch {
-  DepthFirstSearch(BinaryTree* t, int k);
-  ~DepthFirstSearch();
-  Node* search(Node* n, int k);
-};
 #endif
