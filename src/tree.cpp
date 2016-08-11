@@ -69,13 +69,15 @@ Node::~Node() {
 }
 
 bool Node::addChild(Node* n) {
-  if(n->getParent() == m_parent) {
+
+
+  if(n->getParent() == m_id) {
     cout << "Adding " << n->getName() << " to " << getName() << "\n";
     m_children.push_back(n);
     return true;
   } else {
     for(size_t i = 0; i < m_children.size(); i++) {
-      m_children[i]->addChild(n)
+      m_children[i]->addChild(n);
     }
   }
 
