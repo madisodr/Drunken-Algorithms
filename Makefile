@@ -1,20 +1,15 @@
-CXX = g++-5
-CPPFLAGS = -g -std=c++11 -Wall
-SRC = src
-INCLUDE = -Iincludes
+CXX := g++-5
+CPPFLAGS := -g -std=c++11 -Wall
+SRC_DIR := src/
+INCLUDE := -Iincludes/
 
-default: all
-all: sorting search tree
+TARGET := dalgo
+SRCS := $(wildcard $(SRC_DIR)/*.cpp)
+OBJS := $(SRCS:$(SRC_DIR)/%.cpp=%.o)
+RM := $(OBJS) $(TARGET)
 
-sorting:
-	@echo "Building Sorting Module"
-	$(CXX) $(CPPFLAGS) -o sort $(SRC)/main.cpp $(SRC)/sorting.cpp $(INCLUDE)
+$(TARGET) : $(OBJS)
+	$(CXX) $(CPPFLAGS) $(INCLUDE) -o $@ $^
 
-
-search:
-	@echo "Building Search Module"
-	$(CXX) $(CPPFLAGS) -o search $(SRC)/main.cpp $(SRC)/search.cpp $(INCLUDE)
-
-tree:
-	@echo "Building Tree Module"
-	$(CXX) $(CPPFLAGS) -o tree $(SRC)/tree.cpp $(INCLUDE)
+$(OBJS) : $(SRCS)
+	$(CXX) $(CPPFLAGS) $(INCLUDE) -c $< -o $@

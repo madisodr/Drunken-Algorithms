@@ -117,21 +117,12 @@ bool Graph::remNode(Node* n) {
   return root->remChild(n);
 }
 
-
-
-// 0 - 0 - "Root"
-// 1 - 0 - "Turgon"
-// 2 - 1 - "Tuor"
-// 3 - 2 - "Earendil"
-// 4 - 0 - 
-
 int main() {
   Graph* g = new Graph();
   unsigned int familySize = sizeof(family)/sizeof(family[0]);
 
   for(size_t i = 0; i < familySize; i++) {
-    Node* n = new Node(family[i].id, family[i].parent, family[i].name);
-    g->addNode(n);
+    g->addNode(new Node(family[i].id, family[i].parent, family[i].name));
   }
 
   delete g;

@@ -21,46 +21,33 @@
 
 #include <vector>
 
-using namespace std;
+namespace search {
+  Node* BFS(Graph* g, int k) {
+    
+  }
 
-struct Node {
-  int key;
-  Node* left;
-  Node* right;
-};
+  Node* BFS(Node* n, int k) {
+    
+  } 
+  Node* DFS(Graph* g, int id) {
+    if(id == 0) 
+      return g->getRoot();
+    else
+      return DFS(g, id);
+  }
 
-class BinarySearch {
-  public:
-    BinarySearch(vector<int>& A, int key);
-    ~BinarySearch();
+  Node* DFS(Node* n, int id) {
+    for(size_t i = 0; i < m_children.size(); i++) {
+      if(m_children[i]->getId() == id)
+        return m_children[i];
+      else {
+        Node* ret = DFS(m_children[i], id);
+        if(ret->getId() == id)
+          return ret;
+      }
+    }
 
-    int search(vector<int>& A, int imin, int imax, int key);
-};
-
-// GRAPH RELATED SEARCHING
-class BinaryTree {
-
-  public:
-    BinaryTree();
-    ~BinaryTree();
-    Node* getRoot() { return root; }
-    void insert(int k);
-  private:
-    void destroyTree(Node* n);
-    void insert(int k, Node* n);
-
-    Node* root;
-};
-
-class BreadthFirstSearch {
-  BreadthFirstSearch(BinaryTree* t, int k);
-  ~BreadthFirstSearch();
-  Node* search(Node* n, int k);
-};
-
-class DepthFirstSearch {
-  DepthFirstSearch(BinaryTree* t, int k);
-  ~DepthFirstSearch();
-  Node* search(Node* n, int k);
-};
+    return NULL;
+  }
+}
 #endif
