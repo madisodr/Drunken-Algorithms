@@ -19,35 +19,5 @@
 #ifndef __drunk_search_h__
 #define __drunk_search_h__
 
-#include <vector>
 
-namespace search {
-  Node* BFS(Graph* g, int k) {
-    
-  }
-
-  Node* BFS(Node* n, int k) {
-    
-  } 
-  Node* DFS(Graph* g, int id) {
-    if(id == 0) 
-      return g->getRoot();
-    else
-      return DFS(g, id);
-  }
-
-  Node* DFS(Node* n, int id) {
-    for(size_t i = 0; i < m_children.size(); i++) {
-      if(m_children[i]->getId() == id)
-        return m_children[i];
-      else {
-        Node* ret = DFS(m_children[i], id);
-        if(ret->getId() == id)
-          return ret;
-      }
-    }
-
-    return NULL;
-  }
-}
 #endif

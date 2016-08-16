@@ -21,18 +21,16 @@
 
 #include <vector>
 
-using namespace std;
-
 /********************************
  * SELECTION SORT
  *******************************/
 class SelectionSort {
   public:
     // Constructor Function to call the actual sorting method.
-    SelectionSort(vector<int>& A);
+    SelectionSort(std::vector<int>& A);
     ~SelectionSort();
 
-    void sort(vector<int>& A);
+    void sort(std::vector<int>& A);
 };
 
 /********************************
@@ -40,9 +38,9 @@ class SelectionSort {
  *******************************/
 class InsertionSort {
   public:
-    InsertionSort(vector<int>& A);
+    InsertionSort(std::vector<int>& A);
     ~InsertionSort();
-    void sort(vector<int>& A);
+    void sort(std::vector<int>& A);
 };
 
 /********************************
@@ -52,12 +50,12 @@ class InsertionSort {
  *******************************/
 class QuickSort {
   public:
-    QuickSort(vector<int>& A);
+    QuickSort(std::vector<int>& A);
     ~QuickSort();
 
-    int partition(vector<int>& A, int left, int right, int p);
+    int partition(std::vector<int>& A, int left, int right, int p);
 
-    void sort(vector<int>& A, int left, int right);
+    void sort(std::vector<int>& A, int left, int right);
 };
 
 /********************************
@@ -65,9 +63,9 @@ class QuickSort {
  *******************************/
 class BubbleSort {
   public:
-    BubbleSort(vector<int>& A);
+    BubbleSort(std::vector<int>& A);
     ~BubbleSort();
-    void sort(vector<int>& A);
+    void sort(std::vector<int>& A);
 
 };
 
@@ -77,8 +75,8 @@ class BubbleSort {
 class MergeSort {
   public:
     ~MergeSort();
-    MergeSort(vector<int>& A, bool topdown);
-    void merge(vector<int>& A, int left, int right, vector<int>& B);
+    MergeSort(std::vector<int>& A, bool topdown);
+    void merge(std::vector<int>& A, int left, int right, std::vector<int>& B);
 };
 
 /********************************
@@ -86,11 +84,11 @@ class MergeSort {
  *******************************/
 class HeapSort {
   public:
-    HeapSort(vector<int>& A);
+    HeapSort(std::vector<int>& A);
     ~HeapSort();
-    void to_heap(vector<int>& a);
+    void to_heap(std::vector<int>& a);
 
-    void sink(vector<int>& a, int i, int max);
+    void sink(std::vector<int>& a, int i, int max);
 };
 
 #endif // __sorting_h__

@@ -21,40 +21,7 @@
 #include "../includes/tree.h"
 
 using namespace std;
-struct node {
-  int id;
-  int parent;
-  string name;
-};
 
-
-node family[] = { 
-  {1, 0, "Thingol"},
-  {2, 1, "Luthien"},
-  {3, 2, "Dior"},
-  {4, 3, "Elured"},
-  {5, 3, "Elurin"},
-  {6, 3, "Elwing"},
-  {7, 6, "Elros"},
-  {8, 6, "Elrond"},
-  {9, 7, "Aragorn"},
-  {10, 8, "Arwen"},
-  {11, 8, "Elladan"},
-  {12, 8, "Elrohir"},
-  {13, 0, "Olwe"},
-  {14, 13, "Earwen"},
-  {15, 14, "Finrod"},
-  {16, 14, "Orodreth"},
-  {17, 14, "Angrod"},
-  {18, 14, "Aegnor"},
-  {19, 14, "Galadriel"},
-  {20, 14, "Celebrian"},
-  {21, 20, "Arwen"},
-  {22, 0, "Elmo"},
-  {23, 22, "Galadhon"},
-  {24, 23, "Celeborn"},
-  {25, 23, "Galathil"}
- };
 
 Node::Node(int id, int parent, string name) {
   m_id = id;
@@ -115,16 +82,4 @@ bool Graph::addNode(Node* n) {
 
 bool Graph::remNode(Node* n) {
   return root->remChild(n);
-}
-
-int main() {
-  Graph* g = new Graph();
-  unsigned int familySize = sizeof(family)/sizeof(family[0]);
-
-  for(size_t i = 0; i < familySize; i++) {
-    g->addNode(new Node(family[i].id, family[i].parent, family[i].name));
-  }
-
-  delete g;
-  return 0;
 }

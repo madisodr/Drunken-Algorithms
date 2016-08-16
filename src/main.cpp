@@ -16,35 +16,89 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../includes/drunk.h"
+#include "drunk.h"
 #include "sorting.h"
-#include <algorithm>
+#include "sudoku.h"
+#include "tree.h"
+#include "trie.h"
+
+
 #include <iostream>
 #include <vector>
 
+using namespace std;
 
-int main() {
-  vector<int> A;
+struct node {
+  int id;
+  int parent;
+  string name;
+};
 
-  // populate a vector with N values.
-  // SORT_SIZE is defined in drunk.h
-  for (int i = 0; i < SORT_SIZE; i++)
-    A.push_back(i);
 
-#ifdef OUTPUT
-  cout << "Initial\n";
-  printVector(A);
-#endif
+node family[] = { 
+  {1, 0, "Thingol"},
+  {2, 1, "Luthien"},
+  {3, 2, "Dior"},
+  {4, 3, "Elured"},
+  {5, 3, "Elurin"},
+  {6, 3, "Elwing"},
+  {7, 6, "Elros"},
+  {8, 6, "Elrond"},
+  {9, 7, "Aragorn"},
+  {10, 8, "Arwen"},
+  {11, 8, "Elladan"},
+  {12, 8, "Elrohir"},
+  {13, 0, "Olwe"},
+  {14, 13, "Earwen"},
+  {15, 14, "Finrod"},
+  {16, 14, "Orodreth"},
+  {17, 14, "Angrod"},
+  {18, 14, "Aegnor"},
+  {19, 14, "Galadriel"},
+  {20, 14, "Celebrian"},
+  {21, 20, "Arwen"},
+  {22, 0, "Elmo"},
+  {23, 22, "Galadhon"},
+  {24, 23, "Celeborn"},
+  {25, 23, "Galathil"}
+};
+void testTree() {
+  Graph* g = new Graph();
+  unsigned int familySize = sizeof(family)/sizeof(family[0]);
 
-  shuffle(A);
+  for(size_t i = 0; i < familySize; i++) {
+    g->addNode(new Node(family[i].id, family[i].parent, family[i].name));
+  }
 
-  cout << "Sorting\n";
-  //MergeSort M(A, false);
-  // BubbleSort B(A);
-  HeapSort H(A);
+  delete g;
+}
 
-#ifdef OUTPUT
-  printVector(A);
-#endif
 
+void sudokuTest() {
+  vector< vector<int> > _grid = 
+  {{3, 0, 6, 5, 0, 8, 4, 0, 0},
+    {5, 2, 0, 0, 0, 0, 0, 0, 0},
+    {0, 8, 7, 0, 0, 0, 0, 3, 1},
+    {0, 0, 3, 0, 1, 0, 0, 8, 0},
+    {9, 0, 0, 8, 6, 3, 0, 0, 5},
+    {0, 5, 0, 0, 9, 0, 6, 0, 0},
+    {1, 3, 0, 0, 0, 0, 2, 5, 0},
+    {0, 0, 0, 0, 0, 0, 0, 7, 4},
+    {0, 0, 5, 2, 0, 6, 3, 0, 0}};
+
+  Sudoku* puzzle = new Sudoku( _grid );
+  puzzle->print();
+
+  if(puzzle->solve())
+    puzzle->print();
+  else
+    cout << "No solution found\n";
+
+  delete puzzle;
+
+}
+
+int main() { 
+  sudokuTest();
+  return 0;
 }

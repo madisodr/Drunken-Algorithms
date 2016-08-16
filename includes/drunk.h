@@ -30,17 +30,15 @@
 #define SORT_SIZE 100 // number of elements to use when populating vectors and arrays
 #define OUTPUT true // display the vector output or not in console.
 
-#define DATA_COMMENT "##"
-#define NODE_DELIM ":"
-#define NODE_LINK_DELIM ","
-
-#define uint unsigned int
-
 
 #ifndef __drunk_h__
 #define __drunk_h__
 
-using namespace std;
+static inline void debug(const std::string& msg) {
+#ifdef OUTPUT
+  std::cout << msg;
+#endif
+}
 
 /********************
  * output a vector of integers
@@ -49,19 +47,16 @@ using namespace std;
  * *****************/
 
 static void printVector(std::vector<int>& A) {
-  for(uint i = 0; i < A.size(); i++)
-    cout << A[i] << " ";
+  for(size_t i = 0; i < A.size(); i++)
+    debug(A[i] + " ");
 
-  cout << "\n\n";
+  debug("\n");
 }
 
 //suffle a vector of integers.
-static void shuffle(vector<int>& A) {
+static inline void shuffle(std::vector<int>& A) {
   random_shuffle (A.begin(), A.end());
-
-#ifdef OUTPUT
-  cout << "Suffleing Vector\n";
-#endif
+  debug("Suffleing Vector\n");
 }
 
 

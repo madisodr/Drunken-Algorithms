@@ -1,15 +1,28 @@
-CXX := g++-5
-CPPFLAGS := -g -std=c++11 -Wall
-SRC_DIR := src/
-INCLUDE := -Iincludes/
+CXX = g++-5
+CPPFLAGS = -g -std=c++11 -Wall
+SRCDIR = src
+BUILDDIR = build
 
-TARGET := dalgo
-SRCS := $(wildcard $(SRC_DIR)/*.cpp)
-OBJS := $(SRCS:$(SRC_DIR)/%.cpp=%.o)
-RM := $(OBJS) $(TARGET)
+SRCS = $(shell find $(SRCDIR) -type f -name *.cpp)
+OBJS = $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SRCS:.cpp=.o))
 
-$(TARGET) : $(OBJS)
-	$(CXX) $(CPPFLAGS) $(INCLUDE) -o $@ $^
+INCLUDE = -I includes
 
-$(OBJS) : $(SRCS)
-	$(CXX) $(CPPFLAGS) $(INCLUDE) -c $< -o $@
+TARGET = dalgo
+RM = $(OBJS) $(TARGET)
+LIB = 
+
+$(TARGET): $(OBJS)
+	@echo "Linking"
+	@echo "$(CXX) $^ -o $(TARGET) $(CPPFLAGS) $(LIB)"
+	$(CXX) $^ -o $(TARGET) $(CPPFLAGS) $(LIB)
+
+$(BUILDDIR)/%.o: $(SRCDIR)/%.cpp
+	@mkdir -p $(BUILDDIR)
+	echo "$(CXX) $(CPPFLAGS) $(INCLUDE) -c -o $@ $^"
+	$(CXX) $(CPPFLAGS) $(INCLUDE) -c -o $@ $^
+
+.PHONY: clean
+clean:
+	echo "Cleaning"
+	rm -r $(OBJS) $(BUILDDIR) $(TARGET)

@@ -17,40 +17,47 @@
  */
 
 #include "../includes/trie.h"
-#include <iostream>
 #include <vector>
 
-Node* Node::findChild(char c) {
-  for(int i = 0; i < m_children.size(); i++) {
-    Node* tmp = m_children[i];
-    if(tmp->content() == c)
-      return tmp;
+using namespace std;
+
+TrieNode::TrieNode() {}
+
+TrieNode::~TrieNode() {
+  for(auto const& it : m_children)
+    delete it;
+}
+
+TrieNode* TrieNode::findChild(char c) {
+  for(auto const& it : m_children) {
+    if(it->getContent() == c)
+      return it;
   }
 
-  return null;
+  return NULL;
 }
 
 Trie::Trie() {
-  root = new Node();
+  root = new TrieNode();
 }
 
 Trie::~Trie() {
-
+  delete root;
 }
 
-void Trie::addWord(std::string s) {
-  Node* curr = root;
+void Trie::addWord(string s) {
+  TrieNode* curr = root;
   if(s.length() == 0) {
     curr->setWordMarker();
     return;
   }
 
   for(int i = 0; i < s.length(); i++) {
-    Node* child = curr->findChild(s[i]);
+    TrieNode* child = curr->findChild(s[i]);
     if(child != NULL) {
       curr = child;
     } else {
-      Node* tmp = new Node();
+      TrieNode* tmp = new TrieNode();
       tmp->setContent(s[i]);
       curr->appendChild(tmp);
       curr = tmp;
@@ -61,18 +68,18 @@ void Trie::addWord(std::string s) {
   }
 }
 
-bool Trie::searchWord(std::string s) {
-  Node* curr = root;
+bool Trie::searchWord(string s) {
+  TrieNode* curr = root;
 
   while(curr != NULL) {
     for(int i = 0; i < s.length(); i++) {
-      Node* tmp = curr->findChild(s[i]);
+      TrieNode* tmp = curr->findChild(s[i]);
       if(tmp == NULL)
         return false;
       curr = tmp;
     }
 
-    if(curr->wordMarker())
+    if(curr->getWordMarker())
       return true;
     else
       return false;
