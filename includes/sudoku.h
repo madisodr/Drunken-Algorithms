@@ -4,17 +4,20 @@
 #include <vector>
 
 #define UNASSIGNED 0
+#define BOXSIZE 3
+#define BOARDSIZE 9
 
 class Sudoku {
   public:
     Sudoku( std::vector< std::vector<int> > _grid);
     ~Sudoku();
+    bool IsLegalBoard();
     bool solve();
-    bool isSafe( int row, int col, int num );
-    bool findUnassigned( int& row, int& col );
-    bool inRow( int row, int num );
-    bool inCol( int col, int num );
-    bool inBox( int boxStartRow, int boxStartCol, int num );
+    bool findUnassigned( std::size_t& row, std::size_t& col );
+    bool isSafe(const std::size_t row, const std::size_t col, const int num );
+    bool inRow(const std::size_t row, const int num );
+    bool inCol(const std::size_t col, const int num );
+    bool inBox(const std::size_t boxStartRow, const std::size_t boxStartCol, const int num );
 
     void print();
   private:

@@ -9,14 +9,26 @@ Sudoku::Sudoku( vector< vector<int> > _grid ) {
   m_size = (int)_grid.size();
 }
 
+bool Sudoku::IsLegalBoard() {
+  if(m_grid.size() != BOARDSIZE)
+    return false;
+  
+  for(auto it : m_grid) {
+    if(it.size() != BOARDSIZE)
+      return false;
+  }
+  
+  return true;
+}
+
 Sudoku::~Sudoku() {}
 
 bool Sudoku::solve() {
-  int row, col;
+  size_t row, col;
   if(!findUnassigned( row, col ))
     return true;
 
-  for(int num = 1; num <= m_grid.size(); num++) {
+  for(size_t num = 1; num <= BOARDSIZE; num++) {
     if(isSafe( row, col, num )) {
       m_grid[row][col] = num;
       if(solve())
@@ -29,13 +41,13 @@ bool Sudoku::solve() {
   return false;
 }
 
-bool Sudoku::isSafe( int row, int col, int num ) {
-  return (!inRow( row, num ) && !inCol( col, num ) && !inBox( row - row % 3, col - col % 3, num ));
+bool Sudoku::isSafe(const size_t row, const size_t col, const int num ) {
+  return (!inRow( row, num ) && !inCol( col, num ) && !inBox( row - row % BOXSIZE, col - col % BOXSIZE, num ));
 }
 
-bool Sudoku::findUnassigned( int & row, int & col ) {
-  for(row = 0; row < m_size; row++) {
-    for(col = 0; col < m_size; col++) {
+bool Sudoku::findUnassigned( size_t & row, size_t & col ) {
+  for(row = 0; row < BOARDSIZE; row++) {
+    for(col = 0; col < BOARDSIZE; col++) {
       if(m_grid[row][col] == UNASSIGNED)
         return true;
     }
@@ -44,17 +56,17 @@ bool Sudoku::findUnassigned( int & row, int & col ) {
   return false;
 }
 
-bool Sudoku::inRow( int row, int num ) {
-  for(int col = 0; col < m_size; col++) {
+bool Sudoku::inRow(const size_t row, const int num ) {
+  for(size_t col = 0; col < BOARDSIZE; col++) {
     if(m_grid[row][col] == num)
       return true;
   }
   return false;
 }
 
-bool Sudoku::inCol( int col, int num ) {
+bool Sudoku::inCol( const size_t col, const int num ) {
 
-  for(int row = 0; row < m_size; row++) {
+  for(size_t row = 0; row < BOARDSIZE; row++) {
     if(m_grid[row][col] == num)
       return true;
   }
@@ -62,9 +74,9 @@ bool Sudoku::inCol( int col, int num ) {
   return false;
 }
 
-bool Sudoku::inBox( int boxStartRow, int boxStartCol, int num ) {
-  for(int row = 0; row < 3; row++) {
-    for(int col = 0; col < 3; col++) {
+bool Sudoku::inBox( const size_t boxStartRow, const size_t boxStartCol, const int num ) {
+  for(size_t row = 0; row < BOXSIZE; row++) {
+    for(size_t col = 0; col < BOXSIZE; col++) {
       if(m_grid[row + boxStartRow][col + boxStartCol] == num)
         return true;
     }
@@ -74,8 +86,8 @@ bool Sudoku::inBox( int boxStartRow, int boxStartCol, int num ) {
 }
 
 void Sudoku::print() {
-  for(int row = 0; row < m_size; row++) {
-    for(int col = 0; col < m_size; col++) {
+  for(size_t row = 0; row < BOARDSIZE; row++) {
+    for(size_t col = 0; col < BOARDSIZE; col++) {
       cout << m_grid[row][col] << " ";
     }
     cout << "\n";

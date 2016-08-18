@@ -27,16 +27,18 @@ using namespace std;
 
 SelectionSort::SelectionSort(vector<int>& A) {
   cout << "Selection Sort\n";
+  shuffle(A);
   sort(A);
+  printVector(A);
 }
 
 void SelectionSort::sort(vector<int>& A) {
-  int iMin;
+  size_t iMin;
 
-  for (uint i = 0; i < A.size(); i++) {
+  for (size_t i = 0; i < A.size(); i++) {
     iMin = i;
 
-    for (uint j = i + 1; j < A.size(); j++) {
+    for (size_t j = i + 1; j < A.size(); j++) {
 
       if (A[j] < A[iMin])
         iMin = j;
@@ -49,7 +51,9 @@ void SelectionSort::sort(vector<int>& A) {
 
 InsertionSort::InsertionSort(vector<int>& A) {
   cout << "Insertion Sort\n";
+  shuffle(A);
   sort(A);
+  printVector(A);
 }
 
 void InsertionSort::sort(vector<int>& A) {
@@ -68,7 +72,9 @@ void InsertionSort::sort(vector<int>& A) {
 
 QuickSort::QuickSort(vector<int>& A) {
   cout << "QuickSort\n";
+  shuffle(A);
   sort(A, 0, A.size());
+  printVector(A);
 }
 
 int QuickSort::partition(vector<int>& A, int left, int right, int p) {
@@ -96,7 +102,9 @@ void QuickSort::sort(vector<int>& A, int left, int right) {
 
 BubbleSort::BubbleSort(vector<int>& A) {
   cout << "BubbleSort\n";
+  shuffle(A);
   sort(A);
+  printVector(A);
 }
 
 void BubbleSort::sort(vector<int>& A) {
@@ -113,8 +121,10 @@ void BubbleSort::sort(vector<int>& A) {
 }
 
 MergeSort::MergeSort(vector<int>& A, bool topdown) {
+  shuffle(A);
   vector<int> B(A.size());
   merge(A, 0, A.size(), B);
+  printVector(A);
 }
 
 void MergeSort::merge(vector<int>& A, int left, int right, vector<int>& B) {

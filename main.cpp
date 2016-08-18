@@ -87,12 +87,15 @@ void sudokuTest() {
     {0, 0, 5, 2, 0, 6, 3, 0, 0}};
 
   Sudoku* puzzle = new Sudoku( _grid );
+  if(!puzzle->IsLegalBoard()) {
+    drunkout("Illegal board.", cERROR);
+  }
   puzzle->print();
 
   if(puzzle->solve())
     puzzle->print();
   else
-    cout << "No solution found\n";
+    drunkout("No solution.", cINFO);
 
   delete puzzle;
 

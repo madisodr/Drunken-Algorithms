@@ -20,6 +20,9 @@
  * Contains various functions used through the project.
  */
 
+#ifndef __drunk_h__
+#define __drunk_h__
+
 #include <vector>
 #include <iostream>
 #include <algorithm> 
@@ -28,16 +31,30 @@
 #include <locale>
 
 #define SORT_SIZE 100 // number of elements to use when populating vectors and arrays
-#define OUTPUT true // display the vector output or not in console.
+#define DEBUG true // display the vector output or not in console.
 
+#define DRUNK_MIN(a, b)((a < b) ? a : b)
+#define DRUNK_MAX(a, b)((a > b) ? a : b)
 
-#ifndef __drunk_h__
-#define __drunk_h__
+enum MsgType {
+  cINFO,
+  cDEBUG,
+  cWARN,
+  cERROR
+};
 
-static inline void debug(const std::string& msg) {
-#ifdef OUTPUT
-  std::cout << msg;
-#endif
+static inline void drunkout(const std::string& msg, const MsgType i = cINFO) {
+  if(i == cINFO)
+    std::cout << "[INFO]: " << msg;
+  else {
+    if(i == cERROR)
+      std::cout << "[ERROR]: " << msg;
+    else {
+      #ifdef DEBUG
+        std::cout << "[DEBUG]: " << msg;
+      #endif
+    }
+  }
 }
 
 /********************
@@ -45,31 +62,19 @@ static inline void debug(const std::string& msg) {
  * TODO: print a vector of any object provided it has a class method to_string or is
  * a standard library type.
  * *****************/
-
 static void printVector(std::vector<int>& A) {
   for(size_t i = 0; i < A.size(); i++)
-    debug(A[i] + " ");
+    drunkout(std::to_string(A[i]) + " ");
 
-  debug("\n");
+  drunkout("\n");
 }
 
 //suffle a vector of integers.
 static inline void shuffle(std::vector<int>& A) {
   random_shuffle (A.begin(), A.end());
-  debug("Suffleing Vector\n");
+  drunkout("Suffleing Vector\n", cDEBUG);
 }
 
-
-/********************
- * drunk_max takes two integers and returns the larger of the two. 
- * If they are equal, it returns the value passed second.
- * *****************/
-static int drunk_max(int x, int y) {
-  if(x > y)
-    return x;
-  else
-    return y;
-}
 
 /* Code used from user Evan Teran - http://stackoverflow.com/users/13430/evan-teran
 
