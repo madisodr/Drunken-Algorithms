@@ -19,8 +19,8 @@
 #include <algorithm>
 #include <iostream>
 #include <vector>
-#include "../includes/sorting.h"
-#include "../includes/drunk.h"
+#include "sorting.h"
+#include "drunk.h"
 
 using namespace std;
 
@@ -155,7 +155,6 @@ void MergeSort::merge(vector<int>& A, int left, int right, vector<int>& B) {
 
 HeapSort::HeapSort(vector<int>& A) {
   to_heap(A);
-  int end = A.size() - 1;
   for (int e = A.size() - 1; e > 0; --e) {
     swap(A[0], A[e]);
     sink(A, 0, e);

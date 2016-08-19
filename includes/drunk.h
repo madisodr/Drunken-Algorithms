@@ -25,10 +25,7 @@
 
 #include <vector>
 #include <iostream>
-#include <algorithm> 
-#include <functional> 
-#include <cctype>
-#include <locale>
+#include <algorithm>
 
 #define SORT_SIZE 100 // number of elements to use when populating vectors and arrays
 #define DEBUG true // display the vector output or not in console.
@@ -39,23 +36,25 @@
 enum MsgType {
   cINFO,
   cDEBUG,
-  cWARN,
   cERROR
 };
 
 static inline void drunkout(const std::string& msg, const MsgType i = cINFO) {
+  if(i == cDebug) {
+
+        #ifdef DEBUG
+        
+        std::cout << "[DEBUG]: " << msg;
+        #endif
+  }
   if(i == cINFO)
     std::cout << "[INFO]: " << msg;
-  else {
-    if(i == cERROR)
-      std::cout << "[ERROR]: " << msg;
-    else {
-      #ifdef DEBUG
-        std::cout << "[DEBUG]: " << msg;
-      #endif
-    }
+  else if(i == cERROR)
+        
+std::cout << "[ERROR]: " << msg;
+
   }
-}
+} 
 
 /********************
  * output a vector of integers

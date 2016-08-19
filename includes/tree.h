@@ -20,6 +20,7 @@
 #define __drunk_tree_h__
 
 #include <vector>
+#include <string>
 
 class Node {
   public:

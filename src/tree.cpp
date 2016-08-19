@@ -18,28 +18,27 @@
 
 #include <iostream>
 #include <vector>
-#include "../includes/tree.h"
+#include "tree.h"
+#include "drunk.h"
 
 using namespace std;
 
 
-Node::Node(int id, int parent, string name) {
-  m_id = id;
-  m_parent = parent;
-  m_name = name;
+Node::Node(int id, int parent, string name) : m_id(id), m_parent(parent), m_name(name) {
+//  m_id = id;
+//  m_parent = parent;
+//  m_name = name;
 }
 
 Node::~Node() {
-  for(size_t i = 0; i < m_children.size(); i++) {
-    delete m_children[i];
-  }
+  for(auto it : m_children)
+    delete it;
 }
 
 bool Node::addChild(Node* n) {
-
-
   if(n->getParent() == m_id) {
-    cout << "Adding " << n->getName() << " to " << getName() << "\n";
+    drunkout("Adding " + n->getName() + " to " + getName() + "\n");
+    m_children.reserve(m_children.size() + 1);
     m_children.push_back(n);
     return true;
   } else {
@@ -65,7 +64,6 @@ bool Node::remChild(Node* n) {
     
   m_children.erase(m_children.begin() + idx);
   return true;
-
 }
 
 Graph::Graph() {
